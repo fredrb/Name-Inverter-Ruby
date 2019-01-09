@@ -13,6 +13,7 @@ class NameInverter
 	end
 
 	def flip_parts(parts)
+		return parts[0] if parts.length == 1
 		parts[1] + ", " + parts[0]
 	end
 
@@ -22,7 +23,7 @@ class NameInverter
 		parts = name.split(' ')
 		return name if parts.length == 1
 		if has_title?(parts)
-			name
+			parts.slice!(0) + ' ' + flip_parts(parts)
 		else
 			flip_parts(parts)
 		end
