@@ -19,8 +19,7 @@ class NameInverter
 
 	def invert(name)
 		return '' if name_invalid?(name)
-		name = name.strip
-		parts = name.split(' ')
+		parts = name.strip.split(' ')
 		if has_title?(parts)
 			parts.slice!(0) + ' ' + flip_parts(parts)
 		else
