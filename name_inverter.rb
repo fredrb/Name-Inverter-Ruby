@@ -5,7 +5,8 @@ class NameInverter
 	end
 
 	def has_title?(parts)
-		parts[0] == 'mr.' || parts[0] == 'Mr.'
+		title = parts[0].upcase
+		title == 'MR.'
 	end
 
 	def invert(name)
