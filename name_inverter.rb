@@ -12,6 +12,11 @@ class NameInverter
 		@titles.any?(parts[0].upcase)
 	end
 
+	def extract_title(parts)
+		return parts.slice!(0) if @titles.any?(parts[0].upcase)
+		''
+	end
+
 	def flip_parts(parts)
 		return parts[0] if parts.length == 1
 		parts[1] + ", " + parts[0]
@@ -20,11 +25,7 @@ class NameInverter
 	def invert(name)
 		return '' if name_invalid?(name)
 		parts = name.strip.split(' ')
-		if has_title?(parts)
-			parts.slice!(0) + ' ' + flip_parts(parts)
-		else
-			flip_parts(parts)
-		end
+		(extract_title(parts) + ' ' + flip_parts(parts)).strip
 	end
 end
 
