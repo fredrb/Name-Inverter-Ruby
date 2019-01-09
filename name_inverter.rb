@@ -13,17 +13,14 @@ class NameInverter
 	end
 
 	def invert(name)
-		if name_invalid?(name)
-			''
+		return '' if name_invalid?(name)
+		name = name.strip
+		parts = name.split(' ')
+		return name if parts.length == 1
+		if has_title?(parts)
+			name
 		else
-			name = name.strip
-			parts = name.split(' ')
-			return name if parts.length == 1
-			if has_title?(parts)
-				name
-			else
-				parts[1] + ", " + parts[0]
-			end
+			parts[1] + ", " + parts[0]
 		end
 	end
 end
