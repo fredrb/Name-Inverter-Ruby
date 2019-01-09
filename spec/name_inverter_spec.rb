@@ -5,30 +5,39 @@ RSpec.describe 'Name Inverter Test' do
 		@inverter = NameInverter.new
 	end
 
-	it 'should return empty string on invalid parameter' do
-		expect(@inverter.invert(nil)).to eq ''
-		expect(@inverter.invert("")).to eq ''
-		expect(@inverter.invert(1)).to eq ''
+	def test_case(input, expected)
+		expect(@inverter.invert(input)).to eq expected
 	end
 
-	it 'should return single name' do
-		expect(@inverter.invert('name')).to eq 'name'
-		expect(@inverter.invert('name ')).to eq 'name'
-		expect(@inverter.invert(' name ')).to eq 'name'
+	context 'Error Handling' do
+		it 'should return empty string on invalid parameter' do
+			test_case(nil, '')
+			test_case("", "")
+			test_case(1, "")
+		end
 	end
 
-	it 'should return last, first' do
-		expect(@inverter.invert('first last')).to eq 'last, first'
-	end
+	context 'Functionality' do
+		it 'should return "name" if "name" passed' do
+			test_case('name', 'name')
+			test_case(' name ', 'name')
+			test_case(' name', 'name')
+		end
 
-	it 'should consider titles' do
-		expect(@inverter.invert('Mr. first')).to eq 'Mr. first'
-		expect(@inverter.invert('mr. first')).to eq 'mr. first'
-		expect(@inverter.invert('Mr. First Last')).to eq 'Mr. Last, First'
-	end
+		it 'should return last, first' do
+			test_case('first last', 'last, first')
+		end
 
-	it 'should keep other titles at the end' do
-		expect(@inverter.invert('First Last III')).to eq 'Last, First III'
+		it 'should consider Mr. title' do
+			test_case('Mr. First', 'Mr. First')
+			test_case('Mr. First Last', 'Mr. Last, First')
+			test_case('mr. First Last', 'mr. Last, First')
+		end
+
+		it 'should keep other titles/names at the end' do
+			test_case('First Last III', 'Last, First III')
+			test_case('Mr. First Last III', 'Mr. Last, First III')
+		end
 	end
 
 end
