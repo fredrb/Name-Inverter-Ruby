@@ -4,6 +4,10 @@ class NameInverter
 		name.nil? || name == "" || name.is_a?(Numeric)
 	end
 
+	def has_title?(parts)
+		parts[0] == 'mr.' || parts[0] == 'Mr.'
+	end
+
 	def invert(name)
 		if name_invalid?(name)
 			''
@@ -11,7 +15,7 @@ class NameInverter
 			name = name.strip
 			parts = name.split(' ')
 			if parts.length > 1
-				if parts[0] == 'mr.' || parts[0] == 'Mr.'
+				if has_title?(parts)
 					name
 				else
 					parts[1] + ", " + parts[0]
