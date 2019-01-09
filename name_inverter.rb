@@ -19,7 +19,7 @@ class NameInverter
 
 	def flip_parts(parts)
 		return parts[0] if parts.length == 1
-		parts[1] + ", " + parts[0]
+		parts.slice!(1) + ", " + parts.join(" ")
 	end
 
 	def invert(name)
