@@ -8,7 +8,12 @@ class NameInverter
 		if name_invalid?(name)
 			''
 		else
-			name
+			parts = name.split(' ')
+			if parts.length > 1
+				parts[1] + ", " + parts[0]
+			else
+				name
+			end
 		end
 	end
 end
