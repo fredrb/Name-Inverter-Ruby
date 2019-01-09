@@ -1,12 +1,15 @@
 class NameInverter
 
+	def initialize
+		@titles = [ "MR." ]
+	end
+
 	def name_invalid?(name)
 		name.nil? || name == "" || name.is_a?(Numeric)
 	end
 
 	def has_title?(parts)
-		title = parts[0].upcase
-		title == 'MR.'
+		@titles.any?(parts[0].upcase)
 	end
 
 	def invert(name)
