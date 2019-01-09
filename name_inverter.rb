@@ -18,14 +18,11 @@ class NameInverter
 		else
 			name = name.strip
 			parts = name.split(' ')
-			if parts.length > 1
-				if has_title?(parts)
-					name
-				else
-					parts[1] + ", " + parts[0]
-				end
-			else
+			return name if parts.length == 1
+			if has_title?(parts)
 				name
+			else
+				parts[1] + ", " + parts[0]
 			end
 		end
 	end
