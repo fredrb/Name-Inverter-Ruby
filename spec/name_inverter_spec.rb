@@ -21,7 +21,8 @@ RSpec.describe 'Name Inverter Test' do
 		expect(@inverter.invert('first last')).to eq 'last, first'
 	end
 
-	it 'should return mr. first' do
+	it 'should consider titles "mr."' do
+		expect(@inverter.invert('Mr. first')).to eq 'Mr. first'
 		expect(@inverter.invert('mr. first')).to eq 'mr. first'
 	end
 
