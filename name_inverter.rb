@@ -1,7 +1,7 @@
 class NameInverter
 
 	def initialize
-		@titles = [ "MR." ]
+		@titles = [ "MR.", "MRS." ]
 	end
 
 	def name_invalid?(name)
