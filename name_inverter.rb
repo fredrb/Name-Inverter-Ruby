@@ -12,6 +12,10 @@ class NameInverter
 		@titles.any?(parts[0].upcase)
 	end
 
+	def flip_parts(parts)
+		parts[1] + ", " + parts[0]
+	end
+
 	def invert(name)
 		return '' if name_invalid?(name)
 		name = name.strip
@@ -20,7 +24,7 @@ class NameInverter
 		if has_title?(parts)
 			name
 		else
-			parts[1] + ", " + parts[0]
+			flip_parts(parts)
 		end
 	end
 end
