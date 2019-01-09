@@ -11,7 +11,11 @@ class NameInverter
 			name = name.strip
 			parts = name.split(' ')
 			if parts.length > 1
-				parts[1] + ", " + parts[0]
+				if parts[0] == 'mr.'
+					name
+				else
+					parts[1] + ", " + parts[0]
+				end
 			else
 				name
 			end
