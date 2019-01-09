@@ -21,7 +21,6 @@ class NameInverter
 		return '' if name_invalid?(name)
 		name = name.strip
 		parts = name.split(' ')
-		return name if parts.length == 1
 		if has_title?(parts)
 			parts.slice!(0) + ' ' + flip_parts(parts)
 		else
